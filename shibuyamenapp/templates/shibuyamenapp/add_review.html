@@ -1,0 +1,34 @@
+{% extends "shibuyamenapp/base.html" %}
+
+{% block title %}レビューを追加{% endblock %}
+
+{% block content %}
+<h1>{{ shop.name }} のレビューを追加</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">レビューを追加</button>
+</form>
+<a href="{% url 'ramen_map' %}">ラーメンマップに戻る</a>
+{% endblock %}
+
+{% comment %} <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レビューを追加</title>
+</head>
+<body>
+    <h1>{{ shop.name }} のレビューを追加</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">レビューを追加</button>
+    </form>
+    
+    <a href="{% url 'ramen_map' %}">ラーメンマップに戻る</a>
+</body>
+</html> {% endcomment %}
+

@@ -1,0 +1,38 @@
+{% extends "shibuyamenapp/base.html" %}
+
+{% block title %}ログイン{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>メニュー:</h2>
+    <ul>
+        <li><a href="{% url 'account_login' %}">ログイン</a></li>
+        <li><a href="{% url 'account_signup' %}">ユーザー登録</a></li>
+    </ul>
+
+    <h3>ログイン</h3>
+    <p>アカウントをまだお持ちでなければ、 <a href="{% url 'account_signup' %}">こちらからユーザー登録</a> してください。</p>
+
+    <form method="post" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="username">ユーザー名:</label>
+            {{ form.login }}
+        </div>
+
+        <div class="form-group">
+            <label for="password">パスワード:</label>
+            {{ form.password }}
+            <p><a href="{% url 'password_reset' %}">パスワードをお忘れですか?</a></p>
+        </div>
+
+        <div class="form-group">
+            <label for="remember">ログインしたままにする:</label>
+            {{ form.remember }}
+        </div>
+
+        <button type="submit" class="btn">ログイン</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "shibuyamenapp/base.html" %}
+
+{% block title %}{{ shop.name }} の詳細情報{% endblock %}
+
+{% block content %}
+<h1>{{ shop.name }}の詳細情報</h1>
+<p><strong>住所:</strong> {{ shop.address }}</p>
+<p><strong>営業時間:</strong> {{ shop.opening_hours }}</p>
+
+<section>
+    <h2>レビュー</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>{{ review.user.username }}</strong> - 評価: {{ review.rating }} / 5
+                <p>{{ review.comment }}</p>
+            </li>
+        {% empty %}
+            <p>まだレビューはありません。</p>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ shop.name }} の詳細情報</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'ramen_map' %}">ラーメンマップに戻る</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>{{ shop.name }}の詳細情報</h1>
+        <p><strong>住所:</strong> {{ shop.address }}</p>
+        <p><strong>営業時間:</strong> {{ shop.opening_hours }}</p>
+
+        <section>
+            <h2>レビュー</h2>
+            <ul>
+                {% for review in reviews %}
+                    <li>
+                        <strong>{{ review.user.username }}</strong> - 評価: {{ review.rating }} / 5
+                        <p>{{ review.comment }}</p>
+                    </li>
+                {% empty %}
+                    <p>まだレビューはありません。</p>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+</body>
+</html> {% endcomment %}

@@ -1,0 +1,91 @@
+{% extends "shibuyamenapp/base.html" %}
+
+{% block title %}店舗検索結果{% endblock %}
+
+{% block content %}
+<h1>ラーメン店舗の検索結果</h1>
+<form method="get">
+    {{ form.as_p }}
+    <button type="submit">検索</button>
+</form>
+<section>
+    <h2>検索結果</h2>
+    <ul>
+        {% for shop in results %}
+            <li><a href="{% url 'shop_detail' shop.id %}">{{ shop.name }}</a> - {{ shop.address }}</li>
+        {% empty %}
+            <p>検索結果が見つかりませんでした。</p>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <button id="toggle-button" onclick="toggleShops()">全店舗一覧を表示</button>
+    <ul id="all-shops" style="display: none;">
+        {% for shop in ramen_shops %}
+            <li><h3>{{ shop.name }}</h3><p>{{ shop.address }}</p><p>{{ shop.scraped_data }}</p></li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
+
+{% comment %} <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店舗検索結果</title>
+    <script>
+        function toggleShops() {
+            var shopsList = document.getElementById("all-shops");
+            var toggleButton = document.getElementById("toggle-button");
+            
+            if (shopsList.style.display === "none") {
+                shopsList.style.display = "block";
+                toggleButton.innerText = "全店舗一覧を隠す";
+            } else {
+                shopsList.style.display = "none";
+                toggleButton.innerText = "全店舗一覧を表示";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>ラーメン店舗の検索結果</h1>
+    </header>
+
+    <main>
+        <form method="get">
+            {{ form.as_p }}
+            <button type="submit">検索</button>
+        </form>
+
+        <section>
+            <h2>検索結果</h2>
+            <ul>
+                {% for shop in results %}
+                    <li>
+                        <a href="{% url 'shop_detail' shop.id %}">{{ shop.name }}</a> - {{ shop.address }}
+                    </li>
+                {% empty %}
+                    <p>検索結果が見つかりませんでした。</p>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <button id="toggle-button" onclick="toggleShops()">全店舗一覧を表示</button>
+            <ul id="all-shops" style="display: none;"> <!-- 初期状態で非表示 -->
+                {% for shop in ramen_shops %}
+                    <li>
+                        <h3>{{ shop.name }}</h3>
+                        <p>{{ shop.address }}</p>
+                        <p>{{ shop.scraped_data }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+</body>
+</html> {% endcomment %}
+

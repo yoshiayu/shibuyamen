@@ -1,0 +1,12 @@
+{% extends "shibuyamenapp/base.html" %}
+
+{% block title %}ラーメンマップ{% endblock %}
+
+{% block extra_head %}
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuGe50Xgx_kKsNoTfzG02EWHFkSXWT8Vo&callback=initMap"></script>
+{% endblock %}
+
+{% block content %}
+<h1>渋谷のラーメンマップ</h1>
+<iframe src="https://www.google.com/maps/d/embed?mid=1bHxv_7lMYaEQTrmhVAcLRhJw_TN-gF4&ehbc=2E312F" width="100%" height="500" frameborder="0"></iframe>
+{% endblock %}

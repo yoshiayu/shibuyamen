@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ラーメンマップ{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="{% url 'ramen_map' %}">ラーメンマップ</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'ramen_map' %}">ホーム</a></li>
+                    <li><a href="{% url 'search_shops' %}">検索</a></li>
+                    <li><a href="{% url 'add_review' 1 %}">レビューを投稿する</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'account_logout' %}">ログアウト</a></li>
+                    {% else %}
+                        <li><a href="{% url 'account_login' %}">ログイン</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'password_reset' %}">パスワードリセット</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        <h1>渋谷のラーメンマップ</h1>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/d/embed?mid=1bHxv_7lMYaEQTrmhVAcLRhJw_TN-gF4&ehbc=2E312F"></iframe>
+        </div>
+        {% endblock %}
+    </main>
+    
+    
+
+    <footer>
+        <p>© 2024 ラーメンマップ. All rights reserved.</p>
+    </footer>
+</body>
+</html>
