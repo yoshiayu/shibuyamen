@@ -70,14 +70,17 @@ graph TD;
 ### 1. リポジトリをクローンします：
 ```bash
 git clone https://github.com/your-username/shibuya-ramen-map-app.git
-
+```
 ### 2. 仮想環境を作成し、依存関係をインストールします
 仮想環境を作成
 ```bash
 python3 -m venv ramenmap
+```
 仮想環境をアクティベート
 ```bash
 source ramenmap/bin/activate
+```
 必要なパッケージをインストール
 ```bash
 pip install -r requirements.txt
+```
