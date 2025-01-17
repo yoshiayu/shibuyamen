@@ -52,9 +52,7 @@ ROOT_URLCONF = "shibuyamenpro.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            BASE_DIR / "shibuyamenapp/templates"
-        ],  # プロジェクトのテンプレートパスを指定
+        "DIRS": [BASE_DIR / "templates"],  # プロジェクトのテンプレートパスを指定
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

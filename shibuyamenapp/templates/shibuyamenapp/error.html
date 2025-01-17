@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>エラー</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        h1 {
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <h1>エラーが発生しました</h1>
+    <p>{{ message }}</p>
+    <a href="{% url 'ramen_map' %}">マップに戻る</a>
+</body>
+</html>

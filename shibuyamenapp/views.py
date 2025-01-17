@@ -47,36 +47,19 @@ def ramen_map(request):
     return render(request, "shibuyamenapp/map.html", context)
 
 
-# def ramen_map(request):
-#     # スクレイピングして最新の店舗情報を取得
-#     shops = scrape_ramen_shops()
-
-#     # Google Maps APIのために緯度・経度を含めた店舗情報を収集
-#     ramen_shops = RamenShop.objects.exclude(
-#         location_latitude=None, location_longitude=None
-#     )
-
-#     # 店舗情報をテンプレートに渡す
-#     shops_with_coordinates = [
-#         {
-#             "name": shop.name,
-#             "latitude": shop.location_latitude,
-#             "longitude": shop.location_longitude,
-#             "address": shop.address,
-#         }
-#         for shop in ramen_shops
-#     ]
-
-#     context = {
-#         "ramen_shops": shops_with_coordinates,
-#     }
-#     return render(request, "shibuyamenapp/map.html", context)
-
-
 # レビュー追加のビュー
 def add_review(request, shop_id):
-    shop = get_object_or_404(RamenShop, id=shop_id)
+    try:
+        shop = get_object_or_404(RamenShop, id=shop_id)
+    except Exception as e:
+        # エラーテンプレートにデータを渡す
+        return render(
+            request,
+            "shibuyamenapp/error.html",
+            {"message": "該当するラーメン店舗が見つかりません。"},
+        )
 
+    # 通常処理
     if request.method == "POST":
         form = ReviewForm(request.POST)
         if form.is_valid():
